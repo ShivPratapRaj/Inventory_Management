@@ -9,4 +9,5 @@ Run following commands in order to run this project:
 3. python3 manage.py migrate
 4. python3 manage.py runserver
 5. Open any browser and type 127.0.0.1:8000
------Enjoy-----
+6. -----Enjoy-----
+

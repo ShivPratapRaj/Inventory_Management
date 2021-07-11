@@ -1,11 +1,7 @@
 # Inventory_Management_System
 
 Description:
-In this project an user can -
-  Add an item.
-  Retrieve items.
-  Update an item.
-  and Delete the item.
+In this project an user can add, retrieve, update and delete the items..
 
 Run following commands in order to run this project:
 1. pip3 install -r requirements.txt(Ignore if allready installed all requied softwares)

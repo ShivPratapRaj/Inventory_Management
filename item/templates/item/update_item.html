@@ -9,13 +9,16 @@
 
 <body>
     <div class="container">
-    <h1 class="display-1 text-center">Update Item</h1>
+    <div class="card mt-4 shadow">
+    <h1 class="display-6 text-center mt-3">Update Item</h1>
+    <div class="card-body">
     <form action="" method="POST" class="d-grid gap-3">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="Update">
-        <a href="{% url 'index' %}" class="btn btn-primary">Back to home</a>
-    </form>
+        <input type="submit" value="Update" class="btn btn-primary">
+        </form>
+</div>
+</div>
 </div>
 </body>
 </html>

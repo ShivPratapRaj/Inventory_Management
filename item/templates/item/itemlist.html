@@ -12,10 +12,12 @@
 </head>
 <body>
 
-<div class="container">
-<form method="post">
+<div class="container mt-1">
+<div class="card shadow " >
+  <div class="card-body" >
+<form method="post" >
 {% csrf_token %}
-<table class="table table-primary text-center table-bordered">
+<table class="table table-primary text-center table-bordered ">
     <thead>
         <tr>
           
@@ -53,7 +55,8 @@
 </table>
 </form>
 </div>
-
+</div>
+</div>
 </body>
 </html>
 {% endblock %}

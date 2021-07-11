@@ -8,6 +8,10 @@ from .models import Item
 # Create your views here.
 
 def index(request):
+    return render(request, 'item/index.html')
+
+
+def additem(request):
     
     form = ItemForm()
     if request.method == 'POST':
@@ -15,7 +19,7 @@ def index(request):
         if form.is_valid():
             form.save()
             return redirect('/itemlist')
-    return render(request, 'item/index.html', {'form': form})
+    return render(request, 'item/additem.html', {'form': form})
     #return HttpResponseRedirect('/itemlist/')
 
 
@@ -29,6 +33,7 @@ def update_item(request, id):
         fm = ItemForm(request.POST, instance=pi)
         if fm.is_valid():
             fm.save()
+            return redirect('/itemlist')
     else:
         pi = Item.objects.get(pk=id)
         fm = ItemForm(instance=pi)

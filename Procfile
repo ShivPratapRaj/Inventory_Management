@@ -1,0 +1,1 @@
+web: gunicorn RCOLLECTION.wsgi --log-file -

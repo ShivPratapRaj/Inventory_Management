@@ -45,3 +45,12 @@ def delete_item(request, id):
         pi = Item.objects.get(pk=id)
         pi.delete()
         return HttpResponseRedirect('/itemlist')
+
+def search_result(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        items = Item.objects.filter(product_name__contains = searched)
+        return render(request, 'item/search_result.html', 
+        {'searched':searched, 'items':items})
+    else:
+       return render(request, 'item/search_result.html') 

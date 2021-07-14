@@ -49,7 +49,7 @@ def delete_item(request, id):
 def search_result(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        items = Item.objects.filter(product_name__contains = searched)
+        items = Item.objects.filter(product_name__icontains = searched)
         return render(request, 'item/search_result.html', 
         {'searched':searched, 'items':items})
     else:

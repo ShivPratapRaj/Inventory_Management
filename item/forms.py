@@ -18,4 +18,4 @@ class ItemForm(ModelForm):
     class Meta:
         model = Item
         widgets = {'date':DateInput()}
-        fields = ['product_name','quantity','size','date']
+        fields = ['product_name','quantity','size','date','sold','left']

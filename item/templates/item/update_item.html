@@ -14,7 +14,15 @@
     <div class="card-body">
     <form action="" method="POST" class="d-grid gap-3">
         {% csrf_token %}
-        {{ form }}
+        {{form.product_name.label}}
+        {{form.product_name}}
+        {{form.quantity.label}}
+        {{form.quantity}}
+        {{form.size.label}}
+        {{form.size}}
+        
+        {{form.date.label}}
+        {{form.date}}
         <input type="submit" value="Update" class="btn btn-primary">
         </form>
 </div>

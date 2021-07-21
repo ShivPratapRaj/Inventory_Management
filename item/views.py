@@ -8,8 +8,23 @@ from .models import Item
 # Create your views here.
 
 def index(request):
-    return render(request, 'item/index.html')
+    labels = []
+    data = []
 
+    #queryset = Item.objects.order_by('-quantity')[:5]
+    queryset = Item.objects.all()
+    for i in queryset:
+        labels.append(i.product_name)
+        data.append(i.quantity)
+    return render(request, 'item/index.html',
+    {'labels': labels,
+    'data':data}
+    )
+
+
+def itemlist(request):
+    all_items = Item.objects.all()
+    return render(request, 'item/itemlist.html',{'all': all_items})
 
 def additem(request):
     
@@ -22,15 +37,12 @@ def additem(request):
     return render(request, 'item/additem.html', {'form': form})
     #return HttpResponseRedirect('/itemlist/')
 
-
-def itemlist(request):
-    all_items = Item.objects.all()
-    return render(request, 'item/itemlist.html',{'all': all_items})
-
 def update_item(request, id):
     if request.method == 'POST':
         pi = Item.objects.get(pk=id)
         fm = ItemForm(request.POST, instance=pi)
+        # sold = request.POST["soldd"]
+        # left = request.POST["leftt"]
         if fm.is_valid():
             fm.save()
             return redirect('/itemlist')
@@ -38,6 +50,22 @@ def update_item(request, id):
         pi = Item.objects.get(pk=id)
         fm = ItemForm(instance=pi)
     return render(request, 'item/update_item.html', {'form':fm})
+
+def soldleft(request, id):
+    pi = Item.objects.get(pk=id)
+    fm = ItemForm(request.POSt, instance=pi)
+    if request.method == 'POST':
+        sold = request.POST["soldd"]
+        left = request.POST["leftt"]
+        sll = Item.objects.filter(product_name="Vests").update(sold, left)
+        if fm.is_valid():
+            fm.save()
+            return redirect('/itemlist')
+        else:
+            pi = Item.objects.get(pk=id)
+        fm = ItemForm(instance=pi)
+    return render(request, 'item/itemlist.html', {'form':fm})
+        
 
 
 def delete_item(request, id):

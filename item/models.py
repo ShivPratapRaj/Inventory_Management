@@ -12,5 +12,7 @@ class Item(models.Model):
     )
     size = models.CharField(max_length=30, choices=size_choice)
     date = models.DateField()
+    sold = models.IntegerField(blank=True, null=True)
+    left = models.IntegerField(blank=True, null=True)
 
     

@@ -25,6 +25,10 @@
           <th scope="col">Quantity</th>
           <th scope="col">Size</th>
           <th scope="col">Date</th>
+          
+          <!-- <th scope="col">Sold</th>
+          <th scope="col">Left</th> -->
+         
           <th scope="col">Actions</th>
          
         </tr>
@@ -37,8 +41,14 @@
           <td>{{ neww.quantity }}</td>
           <td>{{ neww.size }}</td>
           <td>{{ neww.date }}</td>
-          <td>
-            <a href="{% url 'update_item' neww.id %}" class="btn btn-warning btn-sm">Edit</a>
+          
+           
+          <!-- <td><input size="2" type="text" id="soldd" name="soldd" value="{{ neww.sold}}"></td>
+          <td><input type="text" size="2" id="leftt" name="leftt" value="{{ neww.left }}"></td> -->
+          
+          
+          
+          <td><a href="{% url 'update_item' neww.id %}" class="btn btn-warning btn-sm">Edit</a>
             <form action="{% url 'delete_item' neww.id %}" method="POST"
             class="d-inline"> {% csrf_token %}
             <input type="submit" class="btn btn-danger btn-sm" value="Delete">

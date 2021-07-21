@@ -27,6 +27,8 @@
                       <th scope="col">Quantity</th>
                       <th scope="col">Size</th>
                       <th scope="col">Date</th>
+                      <!-- <th scope="col">Sold</th>
+                      <th scope="col">Left</th> -->
                       <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -38,6 +40,8 @@
                       <td>{{ sitem.quantity }}</td>
                       <td>{{ sitem.size }}</td>
                       <td>{{ sitem.date }}</td>
+                      <!-- <td>{{ sitem.sold }}</td>
+                      <td>{{ sitem.left }}</td> -->
                       <td>
                         <a href="{% url 'update_item' sitem.id %}" class="btn btn-warning btn-sm">Edit</a>
                         <form action="{% url 'delete_item' sitem.id %}" method="POST"

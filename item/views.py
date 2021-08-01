@@ -10,24 +10,29 @@ from .models import Item
 def index(request):
     labels = []
     data = []
+    sss = []
+    lll = []
 
     #queryset = Item.objects.order_by('-quantity')[:5]
     queryset = Item.objects.all()
     for i in queryset:
         labels.append(i.product_name)
         data.append(i.quantity)
+        sss.append(i.sold)
+        lll.append(i.left)
     return render(request, 'item/index.html',
-    {'labels': labels,
-    'data':data}
-    )
+                  {'labels': labels,
+                   'data': data}
+                  )
 
 
 def itemlist(request):
     all_items = Item.objects.all()
-    return render(request, 'item/itemlist.html',{'all': all_items})
+    return render(request, 'item/itemlist.html', {'all': all_items})
+
 
 def additem(request):
-    
+
     form = ItemForm()
     if request.method == 'POST':
         form = ItemForm(request.POST)
@@ -36,6 +41,7 @@ def additem(request):
             return redirect('/itemlist')
     return render(request, 'item/additem.html', {'form': form})
     #return HttpResponseRedirect('/itemlist/')
+
 
 def update_item(request, id):
     if request.method == 'POST':
@@ -49,23 +55,7 @@ def update_item(request, id):
     else:
         pi = Item.objects.get(pk=id)
         fm = ItemForm(instance=pi)
-    return render(request, 'item/update_item.html', {'form':fm})
-
-def soldleft(request, id):
-    pi = Item.objects.get(pk=id)
-    fm = ItemForm(request.POSt, instance=pi)
-    if request.method == 'POST':
-        sold = request.POST["soldd"]
-        left = request.POST["leftt"]
-        sll = Item.objects.filter(product_name="Vests").update(sold, left)
-        if fm.is_valid():
-            fm.save()
-            return redirect('/itemlist')
-        else:
-            pi = Item.objects.get(pk=id)
-        fm = ItemForm(instance=pi)
-    return render(request, 'item/itemlist.html', {'form':fm})
-        
+    return render(request, 'item/update_item.html', {'form': fm})
 
 
 def delete_item(request, id):
@@ -74,11 +64,12 @@ def delete_item(request, id):
         pi.delete()
         return HttpResponseRedirect('/itemlist')
 
+
 def search_result(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        items = Item.objects.filter(product_name__icontains = searched)
-        return render(request, 'item/search_result.html', 
-        {'searched':searched, 'items':items})
+        items = Item.objects.filter(product_name__icontains=searched)
+        return render(request, 'item/search_result.html',
+                      {'searched': searched, 'items': items})
     else:
-       return render(request, 'item/search_result.html') 
+       return render(request, 'item/search_result.html')

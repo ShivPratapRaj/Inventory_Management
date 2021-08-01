@@ -3,32 +3,34 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Update</title>
-    </head>
+
+<head>
+    <title>Update</title>
+</head>
 
 <body>
     <div class="container">
-    <div class="card mt-4 shadow">
-    <h1 class="display-6 text-center mt-3">Update Item</h1>
-    <div class="card-body">
-    <form action="" method="POST" class="d-grid gap-3">
-        {% csrf_token %}
-        {{form.product_name.label}}
-        {{form.product_name}}
-        {{form.quantity.label}}
-        {{form.quantity}}
-        {{form.size.label}}
-        {{form.size}}
-        
-        {{form.date.label}}
-        {{form.date}}
-        <input type="submit" value="Update" class="btn btn-primary">
-        </form>
-</div>
-</div>
-</div>
+        <div class="card mt-4 shadow">
+            <h1 class="display-6 text-center mt-3">Update Item</h1>
+            <div class="card-body">
+                <form action="" method="POST" class="d-grid gap-3">
+                    {% csrf_token %}
+
+                    {{form}}
+
+
+
+                    <script>
+                        document.getElementById("sssd").value = localStorage.getItem("textvalue");
+                        document.getElementById("lllt").value = localStorage.getItem("lvalue");
+                    </script>
+                    <input type="submit" value="Update" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
 
 {% endblock %}

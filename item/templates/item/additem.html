@@ -14,6 +14,12 @@
         }
         
     </style>
+    <script>
+        function copyvalue() {
+            var q = document.getElementById("qty").value;
+            document.getElementById("lllt").value = q;
+        }
+    </script>
     </head>
 
     <body>
@@ -25,7 +31,7 @@
         <form action="" method="post" class=" form-group d-grid gap-3" enctype="multipart/form-data">
         {% csrf_token %}
         
-        {{form.product_name.label}}
+        <!-- {{form.product_name.label}}
         {{form.product_name}}
         {{form.quantity.label}}
         {{form.quantity}}
@@ -33,7 +39,8 @@
         {{form.size}}
         
         {{form.date.label}}
-        {{form.date}}
+        {{form.date}} -->
+        {{form}}
         
         <button type="submit" class="btn btn-warning btn-sm">Add</button>
         </form>

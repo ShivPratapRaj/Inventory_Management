@@ -3,67 +3,115 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Searc Results</title>
-        <style>
-            a {
-                text-decoration: none;
-            }
-        </style>
-    </head>
+
+<head>
+    <title>Searc Results</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
 
 <body>
     <div class="container mt-3">
         <div class="card-shadow">
-        <div class="card-body">
-        {% if searched %}
-            <h1 class="display-6">You serached for - {{searched}}</h1></br>
-            
-            <table class="table table-primary text-center table-bordered ">
-                <thead>
-                    <tr>
-                      
-                      <th scope="col">Product Name</th>
-                      <th scope="col">Quantity</th>
-                      <th scope="col">Size</th>
-                      <th scope="col">Date</th>
-                      <!-- <th scope="col">Sold</th>
-                      <th scope="col">Left</th> -->
-                      <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for sitem in items %}
-                    <tr>
-                      
-                      <td><a href="{% url 'itemlist' %}">{{ sitem.product_name }}</a></td>
-                      <td>{{ sitem.quantity }}</td>
-                      <td>{{ sitem.size }}</td>
-                      <td>{{ sitem.date }}</td>
-                      <!-- <td>{{ sitem.sold }}</td>
-                      <td>{{ sitem.left }}</td> -->
-                      <td>
-                        <a href="{% url 'update_item' sitem.id %}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{% url 'delete_item' sitem.id %}" method="POST"
-                        class="d-inline"> {% csrf_token %}
-                        <input type="submit" class="btn btn-danger btn-sm" value="Delete">
-                        </form>
-                      </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-                 
-            </table>
-      
-        {% else %}
-            <h1 class="display-6">Type Something to see the search result.</h1>
-        {% endif %}
+            <div class="card-body">
+                {% if searched %}
+                <h1 class="display-6">You serached for - {{searched}}</h1></br>
 
+                <table class="table table-primary text-center table-bordered ">
+                    <thead>
+                        <tr>
+
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Size</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Sold</th>
+                            <th scope="col">Left</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sitem in items %}
+                        <tr>
+
+                            <td><a href="{% url 'itemlist' %}">{{ sitem.product_name }}</a></td>
+                            <td><input type="text" size="1" class="total" value="{{ sitem.quantity }}"></td>
+                            <td>{{ sitem.size }}</td>
+                            <td>{{ sitem.date }}</td>
+                            <td>
+                                <div class="letsdoit">
+                                    <form action="{% url 'update_item' sitem.id %}">
+
+                                        <button class="minus-btn" type="button" name="button">-</button>
+                                        <input type="text" size="1" value="{{sitem.sold}}" class="sold">
+                                        <button class="plus-btn" type="button" name="button">+</button>
+                                        <input type="submit" value="Update">
+
+                                    </form>
+                                </div>
+                            </td>
+                            <td><input type="text" size="1" class="left" value="{{ sitem.left }}"></td>
+                            <td>
+                                <a href="{% url 'update_item' sitem.id %}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{% url 'delete_item' sitem.id %}" method="POST" class="d-inline"> 
+                                    {% csrf_token %}
+                                    <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+                {% else %}
+                <h1 class="display-6">Type Something to see the search result.</h1>
+                {% endif %}
+
+            </div>
+        </div>
     </div>
-</div>
-</div>
+
+    <script>
+        const t = document.querySelectorAll(".total");
+        const mbutton = document.querySelectorAll(".minus-btn");
+        const pbutton = document.querySelectorAll(".plus-btn");
+        const s = document.querySelectorAll(".sold");
+        const l = document.querySelectorAll(".left");
+
+        for (let i = 0; i < mbutton.length; i++) {
+            mbutton[i].addEventListener('click', function minusProduct(e) {
+                if (s[i].value == 0) {
+                    l[i].value = t[i].value;
+                    mbutton.disabled = true;
+                } else
+                    s[i].value--;
+                l[i].value++;
+                localStorage.setItem("textvalue", s[i].value);
+                localStorage.setItem("lvalue", l[i].value);
+                e.preventDefault();
+            });
+        }
+        for (let i = 0; i < pbutton.length; i++) {
+            pbutton[i].addEventListener('click', function plusProduct(e) {
+                if (t[i].value == s[i].value) {
+                    pbutton.disabled = true;
+                } else
+                    s[i].value++;
+                l[i].value = parseInt(t[i].value - s[i].value);
+                localStorage.setItem("textvalue", s[i].value);
+                localStorage.setItem("lvalue", l[i].value);
+                e.preventDefault();
+            });
+        }
+
+    </script>
 
 </body>
+
 </html>
 
 {% endblock %}

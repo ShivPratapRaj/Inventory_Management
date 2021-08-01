@@ -10,12 +10,30 @@ from crispy_forms.helper import FormHelper
 #    size = forms.ChoiceField(choices=[('S','Short'), ('M','Medium'),('L','Long')])
 #    date = forms.DateField()
 
+
 class DateInput(forms.DateInput):
    input_type = 'date'
 
+
 class ItemForm(ModelForm):
-    
+    sold = forms.CharField(initial=0,
+                           widget=forms.TextInput(attrs={
+                               'id': 'sssd',
+                               'class': 'sssd'
+                           }),
+
+                           )
+
+    left = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'id': 'lllt',
+            'class': 'lllt',
+            'placeholder': 'Enter total number of items here also.',
+
+        })
+    )
+
     class Meta:
         model = Item
-        widgets = {'date':DateInput()}
-        fields = ['product_name','quantity','size','date','sold','left']
+        widgets = {'date': DateInput()}
+        fields = ['product_name', 'quantity', 'size', 'date', 'sold', 'left']

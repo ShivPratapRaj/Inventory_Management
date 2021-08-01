@@ -22,9 +22,50 @@ def index(request):
         lll.append(i.left)
     return render(request, 'item/index.html',
                   {'labels': labels,
-                   'data': data}
-                  )
+                   'data': data,
+                   'sss':sss,
+                   'lll':lll,
+                  })
 
+def leftitems(request):
+    labels = []
+    data = []
+    sss = []
+    lll = []
+
+    #queryset = Item.objects.order_by('-quantity')[:5]
+    queryset = Item.objects.all()
+    for i in queryset:
+        labels.append(i.product_name)
+        data.append(i.quantity)
+        sss.append(i.sold)
+        lll.append(i.left)
+    return render(request, 'item/leftitems.html',
+                  {'labels': labels,
+                   'data': data,
+                   'sss':sss,
+                   'lll':lll,
+                  })
+
+def solditems(request):
+    labels = []
+    data = []
+    sss = []
+    lll = []
+
+    #queryset = Item.objects.order_by('-quantity')[:5]
+    queryset = Item.objects.all()
+    for i in queryset:
+        labels.append(i.product_name)
+        data.append(i.quantity)
+        sss.append(i.sold)
+        lll.append(i.left)
+    return render(request, 'item/solditems.html',
+                  {'labels': labels,
+                   'data': data,
+                   'sss':sss,
+                   'lll':lll,
+                  })
 
 def itemlist(request):
     all_items = Item.objects.all()

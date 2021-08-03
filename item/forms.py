@@ -16,20 +16,25 @@ class DateInput(forms.DateInput):
 
 
 class ItemForm(ModelForm):
+    quantity = forms.IntegerField(
+        widget=forms.NumberInput(attrs={
+            'id': 'qqqt',
+            'class': 'qqqt'
+        })
+    )
+
     sold = forms.CharField(initial=0,
                            widget=forms.TextInput(attrs={
                                'id': 'sssd',
                                'class': 'sssd'
-                           }),
+                           })
 
                            )
 
     left = forms.CharField(
         widget=forms.TextInput(attrs={
             'id': 'lllt',
-            'class': 'lllt',
-            'placeholder': 'Enter total number of items here also.',
-
+            'class': 'lllt'
         })
     )
 

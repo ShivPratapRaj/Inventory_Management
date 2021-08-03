@@ -26,7 +26,8 @@ class ItemForm(ModelForm):
     sold = forms.CharField(initial=0,
                            widget=forms.TextInput(attrs={
                                'id': 'sssd',
-                               'class': 'sssd'
+                               'class': 'sssd',
+                               'readonly':'readonly'
                            })
 
                            )
@@ -34,7 +35,8 @@ class ItemForm(ModelForm):
     left = forms.CharField(
         widget=forms.TextInput(attrs={
             'id': 'lllt',
-            'class': 'lllt'
+            'class': 'lllt',
+            'readonly':'readonly'
         })
     )
 

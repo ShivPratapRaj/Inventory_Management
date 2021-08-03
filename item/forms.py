@@ -28,6 +28,7 @@ class ItemForm(ModelForm):
                                'id': 'sssd',
                                'class': 'sssd',
                                'readonly':'readonly'
+                               
                            })
 
                            )
@@ -36,7 +37,8 @@ class ItemForm(ModelForm):
         widget=forms.TextInput(attrs={
             'id': 'lllt',
             'class': 'lllt',
-            'readonly':'readonly'
+            'readonly':'readonly',
+            'placeholder':'It will automatically get filled.'
         })
     )
 

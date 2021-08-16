@@ -28,10 +28,8 @@ class ItemForm(ModelForm):
                                'id': 'sssd',
                                'class': 'sssd',
                                'readonly':'readonly'
-                               
-                           })
-
-                           )
+                               })
+                               )
 
     left = forms.CharField(
         widget=forms.TextInput(attrs={

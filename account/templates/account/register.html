@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+        <h1>Sign Up</h1>
+        
+        <form method="POST" novalidate>
+            {{ form.as_p }}
+            {% csrf_token %}
+        
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <p class="err">{{error}}</p>
+                {% endfor %}
+            {% endif %}
+        
+            <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary mb-2" type="submit">Register</button>
+            </div>
+        </form>
+        
+        <a href="{% url 'account:login' %}">Login if already have an account</a>
+        
+        {% if messages %}
+            {% for message in messages %}
+            <small {% if message.tags %} class="{{message.tags}}" {% endif %}>
+                {{message}}
+            </small>
+            {% endfor %}
+        {% endif %}
+        </div>
+        </div>
+        </div>
+</body>
+</html>
+
+{% endblock %}

@@ -15,17 +15,21 @@ def index(request):
 
     #queryset = Item.objects.order_by('-quantity')[:5]
     queryset = Item.objects.all()
+    #if request.user.is_authenticated:
     for i in queryset:
         labels.append(i.product_name)
         data.append(i.quantity)
         sss.append(i.sold)
         lll.append(i.left)
+            
     return render(request, 'item/index.html',
-                  {'labels': labels,
-                   'data': data,
-                   'sss':sss,
-                   'lll':lll,
-                  })
+                            {'labels': labels,
+                            'data': data,
+                            'sss':sss,
+                            'lll':lll,
+                            })
+    # else:
+    #     return HttpResponseRedirect('/account/login/')
 
 def leftitems(request):
     labels = []

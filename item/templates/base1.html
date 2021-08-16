@@ -46,14 +46,14 @@
         <form class="d-flex" method="POST" action="{% url 'search_result' %}">
           {% csrf_token %}
           <input type="search" class="form-control me-2" placeholder="Search Item" aria-label="Search" name="searched">
-          <button class="btn btn-outline-dark " type="submit">Search</button>
+          <button class="btn btn-dark " type="submit">Search</button>
         </form>
         
         {% if request.user.is_authenticated %}
         
         
         <p id="pid" class="ms-2 mt-3">Hello {{request.user.first_name}}</p>
-        <a href="{% url 'account:ulogout' %}" class="btn btn-dark ms-2 btn-sm">Log Out</a>
+        <a href="{% url 'account:ulogout' %}" class="btn btn-outline-dark ms-2 btn-sm">Log Out</a>
         
         {% else %}
         <a href="{% url 'account:login' %}" class="btn btn-light ms-2">Log In</a>

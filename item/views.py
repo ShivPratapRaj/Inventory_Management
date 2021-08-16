@@ -27,6 +27,7 @@ def index(request):
                             'data': data,
                             'sss':sss,
                             'lll':lll,
+                            'name':request.user.username,
                             })
     # else:
     #     return HttpResponseRedirect('/account/login/')

@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,46 +12,56 @@
     <title>Login</title>
     <style>
         .err {
-            color:red;
+            color: red;
         }
+
         a {
             text-decoration: none;
         }
     </style>
 </head>
+
 <body>
     <div class="container mt-5">
         <div class="row justify-content-center">
-        <div class="col-sm-6 col-md-6 col-lg-6">
-        <h1>Log In</h1>
-        
-        <form method="POST" novalidate>
-        {% csrf_token %}
-        <!-- {{ form.as_p}} -->
-        
+            <div class="col-sm-6 col-md-6 col-lg-6">
 
-        {% if form.non_field_errors %}
-        {% for error in form.non_field_errors %}
-        <p class="err">{{error}}</p>
-        {% endfor %}
-        {% endif %}
 
-        {% for form in form %}
-            {{form.label_tag}} {{form}} {{form.errors|striptags}}<br><br>
-        {% endfor %}
-        
-        
-        <div class="d-grid gap-2 col-4 ms-5">
-        <button type="submit" class="btn btn-primary mb-5">Login</button>
+                <div class="card" style="width: 25rem;">
+
+                    <div class="card-header">
+                        <h2>Sign In</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2 col-4 ms-5">
+                            <form method="POST" novalidate>
+                                {% csrf_token %}
+                                <!-- {{ form.as_p}} -->
+
+
+                                {% if form.non_field_errors %}
+                                {% for error in form.non_field_errors %}
+                                <p class="err">{{error}}</p>
+                                {% endfor %}
+                                {% endif %}
+
+                                {% for form in form %}
+                                {{form.label_tag}} {{form}} {{form.errors|striptags}}<br><br>
+                                {% endfor %}
+
+
+                                <button type="submit" class="btn btn-primary mb-5">Login</button>
+                        </div>
+                    </div>
+                </div>
+                </form>
+
+                <a href="{% url 'account:register' %}">Sign Up If don't have an account</a>
+            </div>
         </div>
-        
-        </form>
-        
-        <a href="{% url 'account:register' %}">Sign Up If don't have an account</a>
-        </div>
-        </div>
-        </div>
+    </div>
 </body>
+
 </html>
 
 {% endblock %}

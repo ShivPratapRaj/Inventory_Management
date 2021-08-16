@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render, HttpResponseRedirect
 from django.http import HttpResponse, request
 from .forms import ItemForm
 from .models import Item
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -76,7 +77,7 @@ def itemlist(request):
     all_items = Item.objects.all()
     return render(request, 'item/itemlist.html', {'all': all_items})
 
-
+@login_required(login_url='/account/login/')
 def additem(request):
 
     form = ItemForm()

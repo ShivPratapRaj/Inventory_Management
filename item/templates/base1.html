@@ -46,7 +46,11 @@
         <form class="d-flex" method="POST" action="{% url 'search_result' %}">
           {% csrf_token %}
           <input type="search" class="form-control me-2" placeholder="Search Item" aria-label="Search" name="searched">
+          {% if request.user.is_authenticated %}
           <button class="btn btn-dark " type="submit">Search</button>
+          {% else %}
+          <button class="btn btn-outline-dark " type="submit">Search</button>
+          {% endif %}
         </form>
         
         {% if request.user.is_authenticated %}

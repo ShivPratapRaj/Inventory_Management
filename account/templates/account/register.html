@@ -32,20 +32,27 @@
                     <div class="card-body">
                         
                         <form method="POST" novalidate>
-                            {{ form.username }}<br>
-                            {{ form.first_name }}<br>
-                            {{ form.last_name }}<br>
-                            {{ form.email }}<br>
-                            {{ form.password1 }}<br>
-                            {{ form.password2}}<br>
-                        
+                            
                             {% csrf_token %}
+                            
+                            {{ form.username }}{{form.errors.username}}<br>
+                            {{ form.first_name }}{{form.errors.first_name}}<br>
+                            {{ form.last_name }}{{form.errors.last_name}}<br>
+                            {{ form.email }}{{form.errors.email}}<br>
+                            {{ form.password1 }}{{form.errors.password1}}<br>
+                            {{ form.password2}}{{form.errors.password2}}<br>
+                            
 
-                            {% if form.non_field_errors %}
+                            <!-- {% if form.non_field_errors %}
                             {% for error in form.non_field_errors %}
                             <p class="err">{{error}}</p>
                             {% endfor %}
-                            {% endif %}
+                            {% endif %} -->
+
+                            <!-- {% for form in form %}
+                            {{form.label_tag}} {{form}} {{form.errors|striptags}}<br><br>
+                            {% endfor %} -->
+
 
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <button class="btn btn-primary mb-2" type="submit">Register</button>

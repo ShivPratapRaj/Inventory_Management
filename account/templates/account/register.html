@@ -30,8 +30,15 @@
                         <h2>Sign Up</h2>
                     </div>
                     <div class="card-body">
+                        
                         <form method="POST" novalidate>
-                            {{ form.as_p }}
+                            {{ form.username }}<br>
+                            {{ form.first_name }}<br>
+                            {{ form.last_name }}<br>
+                            {{ form.email }}<br>
+                            {{ form.password1 }}<br>
+                            {{ form.password2}}<br>
+                        
                             {% csrf_token %}
 
                             {% if form.non_field_errors %}
@@ -44,6 +51,7 @@
                                 <button class="btn btn-primary mb-2" type="submit">Register</button>
                             </div>
                         </form>
+                    
                     </div>
                 </div>
 

@@ -3,7 +3,9 @@ from django.shortcuts import redirect, render, HttpResponseRedirect
 from django.http import HttpResponse, request
 from .forms import ItemForm
 from .models import Item
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.admin.views.decorators import staff_member_required
+
 
 
 # Create your views here.
@@ -104,7 +106,9 @@ def update_item(request, id):
         fm = ItemForm(instance=pi)
     return render(request, 'item/update_item.html', {'form': fm})
 
-
+@login_required
+#@user_passes_test(lambda u: u.is_superuser)
+@staff_member_required
 def delete_item(request, id):
     if request.method == 'POST':
         pi = Item.objects.get(pk=id)

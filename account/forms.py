@@ -4,9 +4,9 @@ from django import forms
 
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
-    first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
-    last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'Email'}))
+    first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'First Name'}))
+    last_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Last Name'}))
 
     class Meta:
         model = User
@@ -21,3 +21,6 @@ class SignUpForm(UserCreationForm):
         self.fields['username'].widget.attrs['class']='form-control'
         self.fields['password1'].widget.attrs['class']='form-control'
         self.fields['password2'].widget.attrs['class']='form-control'
+        self.fields['username'].widget.attrs['placeholder']='Username'
+        self.fields['password1'].widget.attrs['placeholder']='Password'
+        self.fields['password2'].widget.attrs['placeholder']='Confirm Password'

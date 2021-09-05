@@ -8,4 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('item.urls')),
     path('account/', include(('account.urls', 'account'), namespace='account')),
+    path('api/', include('item.api.urls')),
+    path('auth/', include('rest_framework.urls')),
+
 ]

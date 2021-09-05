@@ -106,9 +106,8 @@ def update_item(request, id):
         fm = ItemForm(instance=pi)
     return render(request, 'item/update_item.html', {'form': fm})
 
-@login_required
-#@user_passes_test(lambda u: u.is_superuser)
-@staff_member_required
+
+#@staff_member_required
 def delete_item(request, id):
     if request.method == 'POST':
         pi = Item.objects.get(pk=id)

@@ -1,5 +1,3 @@
-
-
 from pathlib import Path
 import os
 import django_heroku
@@ -31,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'item',
     'account',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
